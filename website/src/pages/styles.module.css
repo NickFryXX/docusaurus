@@ -120,8 +120,38 @@ html[data-theme='dark'] .topBannerTitleText {
 }
 
 .hero {
-  background-color: #2b3137;
-  padding: 48px;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(37, 194, 160, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(62, 204, 94, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(0deg, transparent 24%, rgba(37, 194, 160, 0.03) 25%, rgba(37, 194, 160, 0.03) 26%, transparent 27%, transparent 74%, rgba(62, 204, 94, 0.03) 75%, rgba(62, 204, 94, 0.03) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(37, 194, 160, 0.03) 25%, rgba(37, 194, 160, 0.03) 26%, transparent 27%, transparent 74%, rgba(62, 204, 94, 0.03) 75%, rgba(62, 204, 94, 0.03) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.3;
 }
 
 .heroInner {
@@ -132,8 +162,26 @@ html[data-theme='dark'] .topBannerTitleText {
 
 .heroProjectTagline {
   color: #fff;
-  font-size: 60px;
+  font-size: 72px;
+  font-weight: 700;
   margin: 0;
+  line-height: 1.2;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.02em;
+}
+
+@media only screen and (max-width: 996px) {
+  .heroProjectTagline {
+    font-size: 48px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .heroProjectTagline {
+    font-size: 36px;
+  }
 }
 
 .heroTitleTextHtml b {
@@ -164,10 +212,13 @@ html[data-theme='dark'] .topBannerTitleText {
 .heroLogo {
   animation-duration: 2s;
   animation-name: jack-in-the-box;
-  float: right;
-  margin-top: 20px;
-  padding: 0 20px 20px;
+  display: block;
+  margin: 0 auto 40px;
+  padding: 0;
   height: auto;
+  filter: drop-shadow(0 0 30px rgba(37, 194, 160, 0.3));
+  position: relative;
+  z-index: 1;
 }
 
 .indexCtas {
@@ -175,7 +226,9 @@ html[data-theme='dark'] .topBannerTitleText {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 24px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 48px;
   overflow: hidden;
 }
 
@@ -185,7 +238,7 @@ html[data-theme='dark'] .topBannerTitleText {
 }
 
 .indexCtas a:last-of-type {
-  margin: 20px 36px;
+  margin: 0;
 }
 
 .indexCtasGitHubButtonWrapper {
@@ -202,8 +255,7 @@ html[data-theme='dark'] .topBannerTitleText {
 
 @media only screen and (max-width: 768px) {
   .hero {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 80px 20px 60px;
   }
 
   .heroInner {
@@ -218,15 +270,21 @@ html[data-theme='dark'] .topBannerTitleText {
   .heroLogo {
     display: block;
     float: none;
-    margin: 0 auto;
+    margin: 0 auto 30px;
   }
 
   .indexCtas {
     justify-content: center;
+    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .indexCtas a {
-    margin: 20px 36px;
+    margin: 0;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .indexCtasGitHubButton {

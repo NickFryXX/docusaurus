@@ -1,9 +1,11 @@
 {
   "tagline": {
-    "en": "Build optimized websites quickly, focus on your content",
-    "fr": "Construisez rapidement des sites web optimisés, concentrez-vous sur votre contenu"
+    "zh-CN": "打造业界领先的大模型应用开发平台",
+    "en": "Leading Large Model Application Development Platform",
+    "fr": "打造业界领先的大模型应用开发平台"
   },
   "remarkRehypeOptions_footnotes": {
+    "zh-CN": "脚注",
     "en": "Footnotes",
     "fr": "Notes de bas de page"
   }

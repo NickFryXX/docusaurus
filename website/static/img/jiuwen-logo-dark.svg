@@ -1,0 +1,41 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 问字像素艺术风格logo - 深色版本 -->
+  <!-- 外部门字框 - 青绿色 -->
+  <g id="door-frame">
+    <!-- 顶部横条 -->
+    <rect x="40" y="30" width="120" height="20" fill="#25c2a0"/>
+    <rect x="40" y="30" width="20" height="20" fill="#3ecc5e"/>
+    
+    <!-- 右侧竖条 -->
+    <rect x="140" y="30" width="20" height="140" fill="#25c2a0"/>
+    <rect x="140" y="30" width="20" height="20" fill="#3ecc5e"/>
+    
+    <!-- 底部横条 -->
+    <rect x="40" y="150" width="120" height="20" fill="#25c2a0"/>
+    <rect x="40" y="150" width="20" height="20" fill="#3ecc5e"/>
+    
+    <!-- 左侧竖条 - 浅青绿色 -->
+    <rect x="40" y="50" width="20" height="100" fill="#3ecc5e"/>
+    <rect x="40" y="50" width="20" height="20" fill="#5dd4a8"/>
+    
+    <!-- 左上角方块 -->
+    <rect x="40" y="30" width="20" height="20" fill="#3ecc5e"/>
+    <rect x="40" y="30" width="10" height="10" fill="#5dd4a8"/>
+  </g>
+  
+  <!-- 内部口字 - 浅青绿色 -->
+  <g id="mouth">
+    <!-- 顶部横条 -->
+    <rect x="80" y="80" width="40" height="15" fill="#3ecc5e"/>
+    <rect x="80" y="80" width="40" height="8" fill="#5dd4a8"/>
+    
+    <!-- 右侧竖条 -->
+    <rect x="105" y="80" width="15" height="40" fill="#3ecc5e"/>
+    <rect x="105" y="80" width="8" height="40" fill="#5dd4a8"/>
+    
+    <!-- 底部横条 -->
+    <rect x="80" y="105" width="40" height="15" fill="#3ecc5e"/>
+    <rect x="80" y="105" width="40" height="8" fill="#5dd4a8"/>
+  </g>
+</svg>
+

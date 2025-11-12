@@ -158,7 +158,7 @@ const Users: User[] = [
   },
   {
     title: 'Blogasaurus',
-    description: 'A blog written using Docusaurus.',
+    description: 'A blog written using JiuWen.',
     preview: require('./showcase/blogasaurus.png'),
     website: 'https://blog.palashsh.me/',
     source: 'https://github.com/BattleOfPlassey/blogasaurus',
@@ -554,7 +554,7 @@ const Users: User[] = [
   {
     title: 'Full Stack Chronicles',
     description:
-      'A blog only Docusaurus site showcasing cloud, data and full stack design patterns and tutorials',
+      'A blog only JiuWen site showcasing cloud, data and full stack design patterns and tutorials',
     preview: require('./showcase/fullstackchronicles.png'),
     website: 'https://fullstackchronicles.io/',
     source: 'https://github.com/stackql/fullstackchronicles.io',
@@ -2405,7 +2405,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Favorite'}),
     description: translate({
       message:
-        'Our favorite Docusaurus sites that you must absolutely check out!',
+        'Our favorite JiuWen sites that you must absolutely check out!',
       id: 'showcase.tag.favorite.description',
     }),
     color: '#e9669e',
@@ -2414,7 +2414,7 @@ export const Tags: {[type in TagType]: Tag} = {
   opensource: {
     label: translate({message: 'Open-Source'}),
     description: translate({
-      message: 'Open-Source Docusaurus sites can be useful for inspiration!',
+      message: 'Open-Source JiuWen sites can be useful for inspiration!',
       id: 'showcase.tag.opensource.description',
     }),
     color: '#39ca30',
@@ -2423,7 +2423,7 @@ export const Tags: {[type in TagType]: Tag} = {
   product: {
     label: translate({message: 'Product'}),
     description: translate({
-      message: 'Docusaurus sites associated to a commercial product!',
+      message: 'JiuWen sites associated to a commercial product!',
       id: 'showcase.tag.product.description',
     }),
     color: '#dfd545',
@@ -2433,7 +2433,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Design'}),
     description: translate({
       message:
-        'Beautiful Docusaurus sites, polished and standing out from the initial template!',
+        'Beautiful JiuWen sites, polished and standing out from the initial template!',
       id: 'showcase.tag.design.description',
     }),
     color: '#a44fb7',
@@ -2443,7 +2443,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'I18n'}),
     description: translate({
       message:
-        'Translated Docusaurus sites using the internationalization support with more than 1 locale.',
+        'Translated JiuWen sites using the internationalization support with more than 1 locale.',
       id: 'showcase.tag.i18n.description',
     }),
     color: '#127f82',
@@ -2453,7 +2453,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Versioning'}),
     description: translate({
       message:
-        'Docusaurus sites using the versioning feature of the docs plugin to manage multiple versions.',
+        'JiuWen sites using the versioning feature of the docs plugin to manage multiple versions.',
       id: 'showcase.tag.versioning.description',
     }),
     color: '#fe6829',
@@ -2463,7 +2463,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Large'}),
     description: translate({
       message:
-        'Very large Docusaurus sites, including many more pages than the average!',
+        'Very large JiuWen sites, including many more pages than the average!',
       id: 'showcase.tag.large.description',
     }),
     color: '#8c2f00',
@@ -2472,7 +2472,7 @@ export const Tags: {[type in TagType]: Tag} = {
   meta: {
     label: translate({message: 'Meta'}),
     description: translate({
-      message: 'Docusaurus sites of Meta (formerly Facebook) projects',
+      message: 'JiuWen sites of Meta (formerly Facebook) projects',
       id: 'showcase.tag.meta.description',
     }),
     color: '#4267b2', // Facebook blue
@@ -2482,7 +2482,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Personal'}),
     description: translate({
       message:
-        'Personal websites, blogs and digital gardens built with Docusaurus',
+        'Personal websites, blogs and digital gardens built with JiuWen',
       id: 'showcase.tag.personal.description',
     }),
     color: '#14cfc3',
@@ -2492,7 +2492,7 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'RTL Direction'}),
     description: translate({
       message:
-        'Docusaurus sites using the right-to-left reading direction support.',
+        'JiuWen sites using the right-to-left reading direction support.',
       id: 'showcase.tag.rtl.description',
     }),
     color: '#ffcfc3',

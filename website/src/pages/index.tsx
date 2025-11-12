@@ -31,9 +31,9 @@ function HeroBanner() {
       <div className={styles.heroInner}>
         <Heading as="h1" className={styles.heroProjectTagline}>
           <img
-            alt={translate({message: 'Docusaurus with Keytar'})}
+            alt={translate({message: 'JiuWen Logo'})}
             className={styles.heroLogo}
-            src={useBaseUrl('/img/docusaurus_keytar.svg')}
+            src={useBaseUrl('/img/jiuwen-logo.svg')}
             width="200"
             height="200"
           />
@@ -44,55 +44,119 @@ function HeroBanner() {
               __html: translate({
                 id: 'homepage.hero.title',
                 message:
-                  'Build <b>optimized</b> websites <b>quickly</b>, focus on your <b>content</b>',
+                  '打造业界领先的Agent开发平台 <b>九问</b>',
                 description:
                   'Home page hero title, can contain simple html tags',
               }),
             }}
           />
         </Heading>
-        <div className={styles.indexCtas}>
-          <Link className="button button--primary" to="/docs">
-            <Translate>Get Started</Translate>
+        <div className={clsx(styles.indexCtas, 'jiuwen-hero-buttons')}>
+          <Link className="button button--primary button--lg jiuwen-btn-primary" to="/docs">
+            <Translate>开始使用</Translate>
           </Link>
-          <Link className="button button--info" to="https://docusaurus.new">
-            <Translate>Try a Demo</Translate>
+          <Link className="button button--outline button--lg jiuwen-btn-outline" to="/news">
+            <Translate>最新动态</Translate>
           </Link>
-          <span className={styles.indexCtasGitHubButtonWrapper}>
-            <iframe
-              className={styles.indexCtasGitHubButton}
-              src="https://ghbtns.com/github-btn.html?user=facebook&amp;repo=docusaurus&amp;type=star&amp;count=true&amp;size=large"
-              width={160}
-              height={30}
-              title="GitHub Stars"
-            />
-          </span>
+          <Link className="button button--outline button--lg jiuwen-btn-outline" to="/community">
+            <Translate>加入社区</Translate>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-function TweetsSection() {
-  const tweetColumns: TweetItem[][] = [[], [], []];
-  Tweets.filter((tweet) => tweet.showOnHomepage).forEach((tweet, i) =>
-    tweetColumns[i % 3]!.push(tweet),
-  );
-
+// 项目介绍区块
+function ProjectIntroSection() {
   return (
-    <div className={clsx(styles.section, styles.sectionAlt)}>
+    <div className={clsx(styles.section, 'jiuwen-intro-section')}>
       <div className="container">
-        <Heading as="h2" className={clsx('margin-bottom--lg', 'text--center')}>
-          <Translate>Loved by many engineers</Translate>
-        </Heading>
-        <div className={clsx('row', styles.tweetsSection)}>
-          {tweetColumns.map((tweetItems, i) => (
-            <div className="col col--4" key={i}>
-              {tweetItems.map((tweet) => (
-                <Tweet {...tweet} key={tweet.url} />
-              ))}
+        <div className="row">
+          <div className="col col--8 col--offset-2">
+            <Heading as="h2" className={clsx('margin-bottom--lg', 'text--center')}>
+              <Translate>关于九问</Translate>
+            </Heading>
+            <div className="text--center padding-horiz--md">
+              <p className="text--lg">
+                <Translate>
+                  九问（JiuWen）致力于打造业界领先的大模型应用开发平台，为开发者提供强大、易用、高效的AI应用开发工具和解决方案。
+                  我们提供完整的开发框架、丰富的API接口、完善的文档和活跃的社区支持，帮助开发者快速构建和部署大模型应用。
+                </Translate>
+              </p>
+              <div className="margin-top--lg">
+                <Link className="button button--primary" to="/docs">
+                  <Translate>查看文档</Translate>
+                </Link>
+                <Link className="button button--secondary margin-left--sm" to="/community">
+                  <Translate>加入社区</Translate>
+                </Link>
+              </div>
             </div>
-          ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 新闻资讯区块
+function NewsSection() {
+  return (
+    <div className={clsx(styles.section, styles.sectionAlt, 'jiuwen-news-section')}>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <Heading as="h2" className={clsx('margin-bottom--lg', 'text--center')}>
+              <Translate>最新动态</Translate>
+            </Heading>
+            <div className="row">
+              <div className="col col--4">
+                <div className="card margin-bottom--md">
+                  <div className="card__header">
+                    <h3><Translate>平台更新</Translate></h3>
+                  </div>
+                  <div className="card__body">
+                    <p><Translate>最新版本发布，带来更多功能和性能优化...</Translate></p>
+                    <Link to="/news" className="button button--link">
+                      <Translate>了解更多 →</Translate>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className="card margin-bottom--md">
+                  <div className="card__header">
+                    <h3><Translate>社区活动</Translate></h3>
+                  </div>
+                  <div className="card__body">
+                    <p><Translate>参与我们的社区活动，与开发者交流分享...</Translate></p>
+                    <Link to="/community" className="button button--link">
+                      <Translate>查看日历 →</Translate>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className="card margin-bottom--md">
+                  <div className="card__header">
+                    <h3><Translate>技术博客</Translate></h3>
+                  </div>
+                  <div className="card__body">
+                    <p><Translate>阅读最新的技术文章和最佳实践...</Translate></p>
+                    <Link to="/blog" className="button button--link">
+                      <Translate>阅读更多 →</Translate>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text--center margin-top--lg">
+              <Link className="button button--primary" to="/news">
+                <Translate>查看所有动态</Translate>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +205,7 @@ function VideoContainer() {
             <LiteYouTubeEmbed
               id="_An9EsKPhp0"
               params="autoplay=1&autohide=1&showinfo=0&rel=0"
-              title="Explain Like I'm 5: Docusaurus"
+              title="Explain Like I'm 5: JiuWen"
               poster="maxresdefault"
               webp
             />
@@ -219,7 +283,7 @@ function TopBanner() {
           <Translate
             id="homepage.banner.launch.newVersion"
             values={{newVersion: announcedVersion}}>
-            {'Docusaurus\xa0{newVersion} is\xa0out!️'}
+            {'JiuWen\xa0{newVersion} is\xa0out!️'}
           </Translate>
         </Link>
         {'\xa0🥳'}
@@ -266,13 +330,12 @@ export default function Home(): ReactNode {
   return (
     <Layout title={tagline} description={description}>
       <main>
-        <TopBanner />
         <HeroBanner />
+        <ProjectIntroSection />
         <div className={styles.section}>
           <FeaturesContainer />
-          <VideoContainer />
         </div>
-        <TweetsSection />
+        <NewsSection />
         <QuotesSection />
       </main>
     </Layout>

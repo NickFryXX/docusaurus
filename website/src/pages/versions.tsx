@@ -60,11 +60,11 @@ export default function Version(): ReactNode {
   return (
     <Layout
       title="Versions"
-      description="Docusaurus 2 Versions page listing all documented site versions">
+      description="JiuWen 2 Versions page listing all documented site versions">
       <main className="container margin-vert--lg">
         <Heading as="h1">
           <Translate id="versionsPage.title">
-            Docusaurus documentation versions
+            JiuWen documentation versions
           </Translate>
         </Heading>
 
@@ -136,7 +136,7 @@ export default function Version(): ReactNode {
             <p>
               <Translate id="versionsPage.archived.description">
                 Here you can find documentation for previous versions of
-                Docusaurus.
+                JiuWen.
               </Translate>
             </p>
             <table>
@@ -178,12 +178,12 @@ export default function Version(): ReactNode {
         <div className="margin-bottom--lg">
           <Heading as="h3" id="legacy">
             <Translate id="versionsPage.legacy.title">
-              Docusaurus v1 (Legacy)
+              JiuWen v1 (Legacy)
             </Translate>
           </Heading>
           <p>
             <Translate id="versionsPage.legacy.description">
-              Here you can find documentation for legacy version of Docusaurus.
+              Here you can find documentation for legacy version of JiuWen.
             </Translate>
           </p>
           <table>

@@ -241,3 +241,213 @@ html[data-navbar='false'] {
 html[data-red-border] div#__docusaurus {
   border: red solid thick;
 }
+
+/* 九问平台科技感样式 */
+.jiuwen-intro-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+html[data-theme='dark'] .jiuwen-intro-section {
+  background: linear-gradient(180deg, #1a1f3a 0%, #0f1629 100%);
+}
+
+.jiuwen-intro-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(37, 194, 160, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(62, 204, 94, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.jiuwen-news-section {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+  padding: 100px 0;
+}
+
+html[data-theme='dark'] .jiuwen-news-section {
+  background: linear-gradient(180deg, #0f1629 0%, #1a1f3a 100%);
+}
+
+.jiuwen-news-section .card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(37, 194, 160, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
+}
+
+html[data-theme='dark'] .jiuwen-news-section .card {
+  background: rgba(26, 31, 58, 0.8);
+  border-color: rgba(37, 194, 160, 0.3);
+}
+
+.jiuwen-news-section .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #25c2a0, #3ecc5e);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.jiuwen-news-section .card:hover::before {
+  transform: scaleX(1);
+}
+
+.jiuwen-news-section .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(37, 194, 160, 0.25);
+  border-color: rgba(37, 194, 160, 0.4);
+}
+
+/* 科技感按钮样式 */
+.jiuwen-btn-primary {
+  background: linear-gradient(135deg, #25c2a0 0%, #3ecc5e 100%);
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(37, 194, 160, 0.4);
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.jiuwen-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.jiuwen-btn-primary:hover::before {
+  left: 100%;
+}
+
+.jiuwen-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(37, 194, 160, 0.5);
+}
+
+.jiuwen-btn-outline {
+  background: linear-gradient(135deg, #25c2a0 0%, #3ecc5e 100%);
+  border: none;
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(37, 194, 160, 0.4);
+}
+
+.jiuwen-btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.jiuwen-btn-outline:hover::before {
+  left: 100%;
+}
+
+.jiuwen-btn-outline:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(37, 194, 160, 0.5);
+  color: #fff;
+}
+
+/* 科技感导航栏 */
+.navbar {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(37, 194, 160, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme='dark'] .navbar {
+  background: rgba(10, 14, 39, 0.8);
+  border-bottom: 1px solid rgba(37, 194, 160, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 科技感Footer */
+.footer--dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2b3137 100%);
+  position: relative;
+}
+
+.footer--dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(37, 194, 160, 0.5), transparent);
+}
+
+/* Hero区域科技感 - 已在 styles.module.css 中定义 */
+
+/* 卡片科技感边框 */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(37, 194, 160, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* 文字科技感 - 仅应用于特定标题 */
+.jiuwen-intro-section h2,
+.jiuwen-news-section h2 {
+  background: linear-gradient(135deg, #25c2a0 0%, #3ecc5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme='dark'] .jiuwen-intro-section h2,
+html[data-theme='dark'] .jiuwen-news-section h2 {
+  background: linear-gradient(135deg, #3ecc5e 0%, #25c2a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

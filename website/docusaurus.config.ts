@@ -140,7 +140,7 @@ const TwitterSvg =
   '<svg style="fill: #1DA1F2; vertical-align: middle; margin-left: 3px;" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>';
 */
 
-const defaultLocale = 'en';
+const defaultLocale = 'zh-CN';
 
 function getLocalizedConfigValue(key: keyof typeof ConfigLocalized) {
   const currentLocale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? defaultLocale;
@@ -164,10 +164,10 @@ const showLastUpdate = process.env.DOCUSAURUS_CURRENT_LOCALE === defaultLocale;
 
 export default async function createConfigAsync() {
   return {
-    title: 'Docusaurus',
+    title: 'JiuWen',
     tagline: getLocalizedConfigValue('tagline'),
     organizationName: 'facebook',
-    projectName: 'docusaurus',
+    projectName: 'jiuwen',
     baseUrl,
     baseUrlIssueBanner: true,
     url: 'https://docusaurus.io',
@@ -216,11 +216,8 @@ export default async function createConfigAsync() {
         isDeployPreview || isBranchDeploy
           ? // Deploy preview and branch deploys: keep them fast!
             [defaultLocale]
-          : isI18nStaging
-          ? // Staging locales: https://docusaurus-i18n-staging.netlify.app/
-            [defaultLocale, 'ja']
-          : // Production locales
-            [defaultLocale, 'fr', 'pt-BR', 'ko', 'zh-CN'],
+          : // Production locales - 支持中文和英文
+            [defaultLocale, 'en'],
     },
     markdown: {
       format: 'detect',
@@ -276,12 +273,12 @@ export default async function createConfigAsync() {
       process.env.DOCUSAURUS_CURRENT_LOCALE !== defaultLocale
         ? 'warn'
         : 'throw',
-    favicon: 'img/docusaurus.ico',
+    favicon: 'img/jiuwen-logo-small.svg',
     customFields: {
       crashTest,
       isDeployPreview,
       description:
-        'An optimized site generator in React. Docusaurus helps you to move fast and write content. Build documentation websites, blogs, marketing pages, and more.',
+        'An optimized site generator in React. JiuWen helps you to move fast and write content. Build documentation websites, blogs, marketing pages, and more.',
       announcedVersion,
     },
     staticDirectories: [
@@ -330,7 +327,7 @@ export default async function createConfigAsync() {
       [
         './src/plugins/changelog/index.ts',
         {
-          blogTitle: 'Docusaurus changelog',
+          blogTitle: 'JiuWen changelog',
           // Not useful, but permits to run git commands earlier
           // Otherwise the sitemap plugin will run them in postBuild()
           showLastUpdateAuthor: showLastUpdate,
@@ -346,7 +343,7 @@ export default async function createConfigAsync() {
           authorsMapPath: 'authors.json',
           feedOptions: {
             type: 'all',
-            title: 'Docusaurus changelog',
+            title: 'JiuWen changelog',
             description:
               'Keep yourself up-to-date about new features in every release',
             copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
@@ -363,7 +360,7 @@ export default async function createConfigAsync() {
           routeBasePath: 'community',
           editUrl: ({locale, versionDocsDirPath, docPath}) => {
             if (locale !== defaultLocale) {
-              return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+              return `https://crowdin.com/project/jiuwen-v2/${locale}`;
             }
             return `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`;
           },
@@ -432,7 +429,7 @@ export default async function createConfigAsync() {
             {
               tagName: 'link',
               rel: 'icon',
-              href: 'img/docusaurus.png',
+              href: 'img/jiuwen-logo-small.svg',
             },
             {
               tagName: 'link',
@@ -457,18 +454,18 @@ export default async function createConfigAsync() {
             {
               tagName: 'link',
               rel: 'apple-touch-icon',
-              href: 'img/docusaurus.png',
+              href: 'img/jiuwen-logo-small.svg',
             },
             {
               tagName: 'link',
               rel: 'mask-icon',
-              href: 'img/docusaurus.png',
-              color: 'rgb(62, 204, 94)',
+              href: 'img/jiuwen-logo-small.svg',
+              color: 'rgb(37, 194, 160)',
             },
             {
               tagName: 'meta',
               name: 'msapplication-TileImage',
-              content: 'img/docusaurus.png',
+              content: 'img/jiuwen-logo-small.svg',
             },
             {
               tagName: 'meta',
@@ -495,7 +492,7 @@ export default async function createConfigAsync() {
             // sidebarCollapsed: true,
             editUrl: ({locale, docPath}) => {
               if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+                return `https://crowdin.com/project/jiuwen-v2/${locale}`;
               }
               // We want users to submit updates to the upstream/next version!
               // Otherwise we risk losing the update on the next release.
@@ -543,7 +540,7 @@ export default async function createConfigAsync() {
             showLastUpdateTime: showLastUpdate,
             editUrl: ({locale, blogDirPath, blogPath}) => {
               if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+                return `https://crowdin.com/project/jiuwen-v2/${locale}`;
               }
               return `https://github.com/facebook/docusaurus/edit/main/website/${blogDirPath}/${blogPath}`;
             },
@@ -552,12 +549,12 @@ export default async function createConfigAsync() {
             feedOptions: {
               type: 'all',
               description:
-                'Keep up to date with upcoming Docusaurus releases and articles by following our feed!',
+                'Keep up to date with upcoming JiuWen releases and articles by following our feed!',
               copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
               xslt: true,
             },
-            blogTitle: 'Docusaurus blog',
-            blogDescription: 'Read blog posts about Docusaurus from the team',
+            blogTitle: 'JiuWen blog',
+            blogDescription: 'Read blog posts about JiuWen from the team',
             blogSidebarCount: 'ALL',
             blogSidebarTitle: 'All our posts',
             onUntruncatedBlogPosts:
@@ -573,7 +570,7 @@ export default async function createConfigAsync() {
             remarkPlugins: [npm2yarn],
             editUrl: ({locale, pagesPath}) => {
               if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
+                return `https://crowdin.com/project/jiuwen-v2/${locale}`;
               }
               return `https://github.com/facebook/docusaurus/edit/main/website/src/pages/${pagesPath}`;
             },
@@ -625,11 +622,10 @@ export default async function createConfigAsync() {
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
-      announcementBar: {
-        id: `announcementBar-v${announcedVersion}`,
-        // content: `⭐️ If you like Docusaurus, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/docusaurus">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://x.com/docusaurus">X ${TwitterSvg}</a>`,
-        content: `🎉️ <b><a target="_blank" href="https://docusaurus.io/blog/releases/${announcedVersion}">Docusaurus v${announcedVersion}</a> is out!</b> 🥳️`,
-      },
+      // announcementBar: {
+      //   id: `announcementBar-v${announcedVersion}`,
+      //   content: `🎉️ <b><a target="_blank" href="https://docusaurus.io/blog/releases/${announcedVersion}">JiuWen v${announcedVersion}</a> is out!</b> 🥳️`,
+      // },
       prism: {
         additionalLanguages: [
           'java',
@@ -688,11 +684,11 @@ export default async function createConfigAsync() {
       },
       navbar: {
         hideOnScroll: true,
-        title: 'Docusaurus',
+        title: 'JiuWen',
         logo: {
-          alt: '',
-          src: 'img/docusaurus.svg',
-          srcDark: 'img/docusaurus_keytar.svg',
+          alt: 'JiuWen Logo',
+          src: 'img/jiuwen-logo-small.svg',
+          srcDark: 'img/jiuwen-logo-small.svg',
           width: 32,
           height: 32,
         },
@@ -701,21 +697,16 @@ export default async function createConfigAsync() {
             type: 'doc',
             position: 'left',
             docId: 'introduction',
-            label: 'Docs',
+            label: '文档',
           },
+          {to: 'blog', label: '博客', position: 'left'},
+          {to: '/news', label: '新闻', position: 'left'},
+          {to: '/community', label: '社区', position: 'left'},
+          {to: '/contribute', label: '贡献', position: 'left'},
           {
-            type: 'docSidebar',
+            type: 'docsVersionDropdown',
             position: 'left',
-            sidebarId: 'api',
-            label: 'API',
-          },
-          {to: 'blog', label: 'Blog', position: 'left'},
-          {to: 'showcase', label: 'Showcase', position: 'left'},
-          {
-            to: '/community/support',
-            label: 'Community',
-            position: 'left',
-            activeBaseRegex: `/community/`,
+            label: '版本',
           },
           // This item links to a draft doc: only displayed in dev
           {
@@ -795,105 +786,85 @@ export default async function createConfigAsync() {
         style: 'dark',
         links: [
           {
-            title: 'Learn',
+            title: '产品',
             items: [
               {
-                label: 'Introduction',
+                label: '文档',
                 to: 'docs',
               },
               {
-                label: 'Installation',
-                to: 'docs/installation',
-              },
-              {
-                label: 'Migration from v1 to v2',
-                to: 'docs/migration',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Feature Requests',
-                to: '/feature-requests',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Help',
-                to: '/community/support',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
+                label: '博客',
                 to: 'blog',
               },
               {
-                label: 'Changelog',
-                to: '/changelog',
+                label: '版本下载',
+                to: '/versions',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-              {
-                html: `
-                <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
-                  <img src="/img/footer/badge-netlify.svg" alt="Deploys by Netlify" width="114" height="51" />
-                </a>
-              `,
-              },
-              {
-                html: `
-                <a href="https://argos-ci.com" target="_blank" rel="noreferrer noopener" aria-label="Covered by Argos">
-                  <img src="/img/footer/badge-argos.svg" alt="Covered by Argos" width="133" height="20" />
-                </a>
-              `,
+                label: '新闻动态',
+                to: '/news',
               },
             ],
           },
           {
-            title: 'Legal',
-            className: 'footer-column-legal',
-            // Don't remove the privacy and terms, it's a legal requirement.
+            title: '社区',
             items: [
               {
-                label: 'Privacy',
-                className: 'footer-item-privacy',
-                href: 'https://opensource.facebook.com/legal/privacy/',
+                label: '社区介绍',
+                to: '/community',
               },
               {
-                label: 'Terms',
-                href: 'https://opensource.facebook.com/legal/terms/',
+                label: '社区日历',
+                to: '/community',
               },
               {
-                label: 'Cookie Policy',
-                href: 'https://opensource.facebook.com/legal/cookie-policy/',
+                label: '贡献指南',
+                to: '/contribute',
+              },
+              {
+                label: '互动交流',
+                to: '/community',
+              },
+            ],
+          },
+          {
+            title: '友情链接',
+            items: [
+              {
+                label: '合作伙伴1',
+                href: '#',
+              },
+              {
+                label: '合作伙伴2',
+                href: '#',
+              },
+              {
+                label: '合作伙伴3',
+                href: '#',
+              },
+            ],
+          },
+          {
+            title: '法律',
+            className: 'footer-column-legal',
+            items: [
+              {
+                label: '隐私政策',
+                to: '/privacy',
+              },
+              {
+                label: '法律声明',
+                to: '/legal',
               },
             ],
           },
         ],
         logo: {
-          alt: 'Meta Open Source Logo',
-          src: '/img/meta_opensource_logo_negative.svg',
-          href: 'https://opensource.fb.com',
+          alt: 'JiuWen Logo',
+          src: '/img/jiuwen-logo-small.svg',
+          href: '/',
         },
-        copyright: `Copyright © ${new Date().getFullYear()} Meta Platforms, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} JiuWen Platform. 京ICP备XXXXXXXX号-1 | Built with JiuWen.`,
       },
     } satisfies Preset.ThemeConfig,
   } satisfies Config;

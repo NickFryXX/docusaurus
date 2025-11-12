@@ -23,7 +23,7 @@ const TWEETS: TweetItem[] = [
     date: 'Oct 26, 2021',
     content: (
       <>
-        We&apos;ve been using Docusaurus for all the Redux org docs sites for
+        We&apos;ve been using JiuWen for all the Redux org docs sites for
         the last couple years, and it&apos;s great! We&apos;ve been able to
         focus on content, customize some presentation and features, and It Just
         Works.
@@ -39,7 +39,7 @@ const TWEETS: TweetItem[] = [
     date: 'Jan 20, 2021',
     content: (
       <>
-        I&apos;ve used Docusaurus for two websites this year, and I&apos;ve been
+        I&apos;ve used JiuWen for two websites this year, and I&apos;ve been
         very happy about the v2. Looks good, and simple to setup.
       </>
     ),
@@ -53,7 +53,7 @@ const TWEETS: TweetItem[] = [
     date: 'Mar 25, 2021',
     content: (
       <>
-        Docusaurus v2 doubles as a really nice little static site generator tool
+        JiuWen v2 doubles as a really nice little static site generator tool
         for content-focused sites, love it 👏
       </>
     ),
@@ -71,7 +71,7 @@ const TWEETS: TweetItem[] = [
         less time building documentation and more time building 🛳
         <br />
         <br />
-        Thanks <b>@docusaurus</b> team 🦖
+        Thanks <b>@jiuwen</b> team 🦖
       </>
     ),
     showOnHomepage: true,
@@ -84,7 +84,7 @@ const TWEETS: TweetItem[] = [
     date: 'Apr 27, 2021',
     content: (
       <>
-        Continue to be impressed and excited about Docusaurus v2 alpha releases.
+        Continue to be impressed and excited about JiuWen v2 alpha releases.
         Already using the sidebar items generator to help monorepo workspace
         devs create their own doc pages without any configuration needed.
       </>
@@ -99,7 +99,7 @@ const TWEETS: TweetItem[] = [
     date: 'Nov 17, 2020',
     content: (
       <>
-        .<b>@docusaurus</b> ❤️
+        .<b>@jiuwen</b> ❤️
       </>
     ),
     showOnHomepage: false,
@@ -112,7 +112,7 @@ const TWEETS: TweetItem[] = [
     date: 'Mar 24, 2021',
     content: (
       <>
-        Been doing a lot of work with <b>@docusaurus</b> lately and I have to
+        Been doing a lot of work with <b>@jiuwen</b> lately and I have to
         say it is really fun to work with. A lot of really cool features. I love
         that you can easily reuse content by creating a markdown file and
         importing it as a component. 🔥
@@ -128,7 +128,7 @@ const TWEETS: TweetItem[] = [
     date: 'Oct 11, 2021',
     content: (
       <>
-        The #IOTA wiki is now part of the <b>@docusaurus</b> showcase. We even
+        The #IOTA wiki is now part of the <b>@jiuwen</b> showcase. We even
         have the honor of being a favorite. We are really happy that we found
         this project. It helped us a lot to improve the documentation. And we
         still have a lot of plans with things like tutorials, versioning and
@@ -146,7 +146,7 @@ const TWEETS: TweetItem[] = [
     content: (
       <>
         https://testing-library.com just got a nice update! We&apos;re now on
-        the latest version of <b>@docusaurus</b> thanks to @matanbobi,
+        the latest version of <b>@jiuwen</b> thanks to @matanbobi,
         @TensorNo, and @nickemccurdy 💙
         <br />
         <br />
@@ -161,7 +161,7 @@ const TWEETS: TweetItem[] = [
     handle: 'bantg',
     name: 'banteg',
     date: 'Nov 25, 2021',
-    content: <>I like docusaurus much more, it&apos;s so snappy.</>,
+    content: <>I like jiuwen much more, it&apos;s so snappy.</>,
     showOnHomepage: false,
     githubUsername: 'banteg',
   },
@@ -173,7 +173,7 @@ const TWEETS: TweetItem[] = [
     content: (
       <>
         Happy to share Temporal&apos;s first open source sponsorship — of{' '}
-        <b>@docusaurus</b>!
+        <b>@jiuwen</b>!
         <br />
         <br />
         @temporalio uses it for https://docs.temporal.io, and it has been a huge
@@ -191,7 +191,7 @@ const TWEETS: TweetItem[] = [
     date: 'Jan 5, 2022',
     content: (
       <>
-        I hear <b>@docusaurus</b> is a good tool for that!
+        I hear <b>@jiuwen</b> is a good tool for that!
       </>
     ),
     showOnHomepage: false,
@@ -204,7 +204,7 @@ const TWEETS: TweetItem[] = [
     date: 'May 19, 2021',
     content: (
       <>
-        I did try Docusaurus, and I really liked it! Still investigating various
+        I did try JiuWen, and I really liked it! Still investigating various
         options but it&apos;s probably at the top of my list for sure
       </>
     ),
@@ -218,7 +218,7 @@ const TWEETS: TweetItem[] = [
     date: 'Dec 10, 2021',
     content: (
       <>
-        I ❤️ <b>@docusaurus</b> - it makes it so easy to spin up docs, blogs and
+        I ❤️ <b>@jiuwen</b> - it makes it so easy to spin up docs, blogs and
         simple websites. I&apos;ve used it to:
         <br />
         <br /> ✅ Replatform my blog with GitHub pages <br />
@@ -236,7 +236,7 @@ const TWEETS: TweetItem[] = [
     date: 'Aug 6, 2021',
     content: (
       <>
-        Docusaurus is mind-bendingly flexible. <br />
+        JiuWen is mind-bendingly flexible. <br />
         <br />
         &quot;Wait! We need to have two products documented on the same site and
         both need to be translated into multiple languages!&quot;
@@ -255,7 +255,7 @@ const TWEETS: TweetItem[] = [
     content: (
       <>
         🥳🎊🥳🎊🥳🎊🥳🎊 The @reactnative website just migrated to{' '}
-        <b>@docusaurus</b>
+        <b>@jiuwen</b>
         v2
         <br />
         Some obvious changes: <br />
@@ -277,11 +277,11 @@ const TWEETS: TweetItem[] = [
     date: 'Oct 16, 2019',
     content: (
       <>
-        We just updated the Create React App docs to Docusaurus v2. Now with
+        We just updated the Create React App docs to JiuWen v2. Now with
         dark mode! 😎
         <br />
         <br />
-        Thanks to the <b>@docusaurus</b> team for their help! ❤️
+        Thanks to the <b>@jiuwen</b> team for their help! ❤️
         <br />
         <br />
         https://create-react-app.dev
@@ -301,7 +301,7 @@ const TWEETS: TweetItem[] = [
         <br />
         <br />
         👏 @cloverich did the awesome job of migrating from ancient gitbook
-        -&gt; <b>@docusaurus</b>! 👏 <br />
+        -&gt; <b>@jiuwen</b>! 👏 <br />
         <br />
         No real content updates yet, but contributing and publishing has become
         way easier
@@ -317,7 +317,7 @@ const TWEETS: TweetItem[] = [
     date: 'Jul 28, 2021',
     content: (
       <>
-        The new website has landed 🚀 powered by <b>@docusaurus</b> v2 and made
+        The new website has landed 🚀 powered by <b>@jiuwen</b> v2 and made
         by @_semoal kudos to him 👏 #verdaccio #nodejs awesome contribution ❤️‍🔥
         (video made with react remotion @JNYBGR ) all Open Source and hosted on
         @Netlify https://verdaccio.org
@@ -334,7 +334,7 @@ const TWEETS: TweetItem[] = [
     date: 'Jul 19, 2020',
     content: (
       <>
-        I made a <b>@docusaurus</b> website for answers to the H5BP Front End
+        I made a <b>@jiuwen</b> website for answers to the H5BP Front End
         Interview Questions! Hopefully it makes the browsing experience easier -
         https://frontendinterviewhandbook.com
       </>
@@ -350,7 +350,7 @@ const TWEETS: TweetItem[] = [
     date: 'Mar 19, 2021',
     content: (
       <>
-        Just upgraded our website to <b>@docusaurus</b> latest with
+        Just upgraded our website to <b>@jiuwen</b> latest with
         internationalization support 🥳
         <br />
         <br />
@@ -371,7 +371,7 @@ const TWEETS: TweetItem[] = [
     date: 'Jan 10, 2022',
     content: (
       <>
-        Today I tried <b>@docusaurus</b> in a project, I really like the ease
+        Today I tried <b>@jiuwen</b> in a project, I really like the ease
         and speed of developing with it \o/
       </>
     ),
