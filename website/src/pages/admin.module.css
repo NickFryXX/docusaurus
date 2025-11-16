@@ -1,0 +1,318 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 1rem;
+  color: #d32f2f;
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  margin-bottom: 2rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--ifm-color-emphasis-600);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: var(--ifm-color-primary);
+}
+
+.tabActive {
+  color: var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.content {
+  min-height: 400px;
+}
+
+/* 配置管理样式 */
+.configList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.configItem {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.configHeader h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.configDesc {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+.configDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.configDisplay p {
+  flex: 1;
+  margin: 0;
+  color: var(--ifm-font-color-base);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.configEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ifm-color-primary-rgb), 0.1);
+}
+
+.configActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* 新闻管理样式 */
+.newsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.newsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newsHeader h2 {
+  margin: 0;
+}
+
+.createForm {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.createForm h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--ifm-font-color-base);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ifm-color-primary-rgb), 0.1);
+}
+
+.formActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.newsItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.newsItem {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.newsItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.newsItemHeader h3 {
+  margin: 0;
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.newsMeta {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.newsContent {
+  color: var(--ifm-font-color-base);
+  margin: 0 0 1rem 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.newsActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* 按钮样式 */
+.btnPrimary {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnPrimary:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.btnSecondary {
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-font-color-base);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnSecondary:hover {
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+.btnEdit {
+  background-color: transparent;
+  color: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btnEdit:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.btnDanger {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnDanger:hover {
+  background-color: #b71c1c;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+

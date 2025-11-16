@@ -12,9 +12,11 @@ import Link from '@docusaurus/Link';
 import Translate, {translate} from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl, {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 import Image from '@theme/IdealImage';
 import Layout from '@theme/Layout';
+import {useAuth} from '@site/src/contexts/AuthContext';
 
 import Tweet from '@site/src/components/Tweet';
 import Tweets, {type TweetItem} from '@site/src/data/tweets';
@@ -300,6 +302,83 @@ function TopBanner() {
   );
 }
 
+// 管理导航栏（仅管理员和 root 用户可见）
+function AdminNavigation(): ReactNode {
+  // 只在客户端检查
+  if (!ExecutionEnvironment.canUseDOM) {
+    return <></>;
+  }
+
+  const {isAdmin, isRoot, loading} = useAuth();
+
+  // 如果正在加载或不是管理员，不显示
+  if (loading || !isAdmin) {
+    return <></>;
+  }
+
+  return (
+    <div style={{
+      backgroundColor: 'var(--ifm-color-primary)',
+      color: 'white',
+      padding: '0.75rem 1rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '1.5rem',
+      flexWrap: 'wrap',
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        flexWrap: 'wrap',
+      }}>
+        <span style={{fontWeight: 600, fontSize: '0.95rem'}}>管理功能：</span>
+        <Link
+          to="/admin/"
+          style={{
+            color: 'white',
+            textDecoration: 'none',
+            padding: '0.4rem 0.8rem',
+            borderRadius: '4px',
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            transition: 'background-color 0.2s',
+            fontSize: '0.9rem',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+          }}>
+          管理台
+        </Link>
+        {isRoot && (
+          <Link
+            to="/admin/users/"
+            style={{
+              color: 'white',
+              textDecoration: 'none',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '4px',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              transition: 'background-color 0.2s',
+              fontSize: '0.9rem',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            }}>
+            用户管理
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Home(): ReactNode {
   const {
     siteConfig: {customFields, tagline},
@@ -308,6 +387,8 @@ export default function Home(): ReactNode {
   return (
     <Layout title={tagline} description={description}>
       <main>
+        {/* 管理台功能已暂时隐藏 */}
+        {/* <AdminNavigation /> */}
         <HeroBanner />
         <ProjectIntroSection />
         <div className={styles.section}>

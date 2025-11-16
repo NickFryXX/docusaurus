@@ -1,0 +1,238 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 1rem;
+  color: #d32f2f;
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.actions {
+  margin-bottom: 2rem;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.userItem {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.userInfo h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: var(--ifm-heading-color);
+}
+
+.userEmail {
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+}
+
+.userMeta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.role {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.roledeveloper {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #1976d2;
+}
+
+.roleadmin {
+  background-color: rgba(156, 39, 176, 0.1);
+  color: #7b1fa2;
+}
+
+.roleroot {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+}
+
+.status {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+}
+
+.userActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.formContainer {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formContainer h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 500;
+  color: var(--ifm-font-color-base);
+}
+
+.input,
+.select {
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ifm-color-primary-rgb), 0.1);
+}
+
+.select {
+  cursor: pointer;
+}
+
+.formActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btnPrimary {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnPrimary:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.btnSecondary {
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-font-color-base);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnSecondary:hover {
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+.btnEdit {
+  background-color: transparent;
+  color: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnEdit:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.btnDanger {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnDanger:hover {
+  background-color: #b71c1c;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+

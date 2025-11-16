@@ -13,181 +13,9 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import Breadcrumbs from '@site/src/components/Breadcrumbs';
+import {discussionsApi, type Discussion, type DiscussionReply} from '@site/src/utils/api';
 import clsx from 'clsx';
 import styles from './discussion.module.css';
-
-// Mock 数据
-const mockQuestions: Record<
-  string,
-  {
-    id: string;
-    title: string;
-    category: string;
-    categoryLabel: string;
-    author: string;
-    createdAt: string;
-    views: number;
-    replies: number;
-    status: string;
-    content: string;
-    repliesList: Array<{
-      id: string;
-      author: string;
-      createdAt: string;
-      content: string;
-    }>;
-  }
-> = {
-  '1': {
-    id: '1',
-    title: '如何快速开始使用九问平台？',
-    category: 'usage',
-    categoryLabel: '使用问题',
-    author: '张三',
-    createdAt: '2024-01-15',
-    views: 128,
-    replies: 5,
-    status: 'solved',
-    content: `我想了解如何快速开始使用九问平台，需要哪些步骤？
-
-我已经完成了账号注册，但是不知道接下来应该做什么。希望能得到详细的指导。
-
-谢谢！`,
-    repliesList: [
-      {
-        id: 'r1',
-        author: '管理员',
-        createdAt: '2024-01-15',
-        content: `欢迎使用九问平台！快速开始步骤如下：
-
-1. 完成账号注册和认证
-2. 查看文档了解基本概念
-3. 尝试创建第一个项目
-4. 参考示例代码进行开发
-
-详细文档请参考：/docs-page`,
-      },
-      {
-        id: 'r2',
-        author: '李四',
-        createdAt: '2024-01-16',
-        content: '我也刚入门，一起学习！',
-      },
-    ],
-  },
-  '2': {
-    id: '2',
-    title: 'API 调用时出现 401 错误',
-    category: 'bug',
-    categoryLabel: 'Bug 反馈',
-    author: '李四',
-    createdAt: '2024-01-14',
-    views: 89,
-    replies: 3,
-    status: 'open',
-    content: `我在调用 API 时遇到了 401 未授权错误。
-
-错误信息：
-\`\`\`
-{
-  "error": "Unauthorized",
-  "code": 401
-}
-\`\`\`
-
-我已经检查了 API Key 的配置，看起来是正确的。请问可能是什么原因？`,
-    repliesList: [
-      {
-        id: 'r1',
-        author: '技术支持',
-        createdAt: '2024-01-14',
-        content: `401 错误通常是由于认证信息不正确导致的。请检查：
-
-1. API Key 是否正确配置
-2. 请求头中是否包含正确的 Authorization 字段
-3. API Key 是否已过期
-
-如果问题仍然存在，请提供更多详细信息。`,
-      },
-    ],
-  },
-  '3': {
-    id: '3',
-    title: '建议增加批量操作功能',
-    category: 'feature',
-    categoryLabel: '功能建议',
-    author: '王五',
-    createdAt: '2024-01-13',
-    views: 156,
-    replies: 8,
-    status: 'open',
-    content: `在使用过程中，我发现需要频繁进行单个操作，效率较低。
-
-建议增加批量操作功能，比如：
-- 批量删除
-- 批量修改
-- 批量导出
-
-这样可以大大提高工作效率。`,
-    repliesList: [
-      {
-        id: 'r1',
-        author: '产品经理',
-        createdAt: '2024-01-13',
-        content: '感谢您的建议！我们已经在规划这个功能，预计在下个版本中发布。',
-      },
-    ],
-  },
-  '4': {
-    id: '4',
-    title: '文档中的示例代码无法运行',
-    category: 'usage',
-    categoryLabel: '使用问题',
-    author: '赵六',
-    createdAt: '2024-01-12',
-    views: 67,
-    replies: 2,
-    status: 'solved',
-    content: `我在按照文档中的示例代码进行操作时，发现代码无法正常运行。
-
-示例代码：
-\`\`\`javascript
-// 示例代码
-\`\`\`
-
-报错信息：xxx
-
-请问是什么原因？`,
-    repliesList: [
-      {
-        id: 'r1',
-        author: '开发者',
-        createdAt: '2024-01-12',
-        content: '这个问题已经修复，请更新到最新版本的文档。',
-      },
-    ],
-  },
-  '5': {
-    id: '5',
-    title: '性能优化相关问题',
-    category: 'other',
-    categoryLabel: '其他',
-    author: '钱七',
-    createdAt: '2024-01-11',
-    views: 94,
-    replies: 4,
-    status: 'open',
-    content: `想了解如何进行性能优化，有什么最佳实践吗？`,
-    repliesList: [
-      {
-        id: 'r1',
-        author: '技术专家',
-        createdAt: '2024-01-11',
-        content: '性能优化是一个复杂的话题，建议参考我们的性能优化文档。',
-      },
-    ],
-  },
-};
 
 const getCategoryBadgeClass = (category: string) => {
   const categoryMap: Record<string, string> = {
@@ -199,19 +27,86 @@ const getCategoryBadgeClass = (category: string) => {
   return categoryMap[category] || 'badge--secondary';
 };
 
+const getCategoryLabel = (category: string) => {
+  const categoryMap: Record<string, string> = {
+    usage: '使用问题',
+    bug: 'Bug 反馈',
+    feature: '功能建议',
+    other: '其他',
+  };
+  return categoryMap[category] || category;
+};
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
 export default function DiscussionDetail(): ReactNode {
   const location = useLocation();
-  const [question, setQuestion] = useState<typeof mockQuestions[string] | null>(null);
+  const [discussion, setDiscussion] = useState<Discussion | null>(null);
+  const [replies, setReplies] = useState<DiscussionReply[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const id = params.get('id');
-    if (id && mockQuestions[id]) {
-      setQuestion(mockQuestions[id]);
+    // 只在客户端执行 API 调用，避免 SSR 问题
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const params = new URLSearchParams(location.search);
+        const id = params.get('id');
+        
+        if (!id) {
+          setError('缺少讨论 ID');
+          setLoading(false);
+          return;
+        }
+
+        const discussionId = parseInt(id, 10);
+        if (isNaN(discussionId)) {
+          setError('无效的讨论 ID');
+          setLoading(false);
+          return;
+        }
+
+        console.log('[DiscussionDetail] Fetching discussion:', discussionId);
+        
+        // 并行获取讨论详情和回复列表
+        const [discussionData, repliesData] = await Promise.all([
+          discussionsApi.getById(discussionId),
+          discussionsApi.getReplies(discussionId),
+        ]);
+
+        console.log('[DiscussionDetail] Received discussion:', discussionData);
+        console.log('[DiscussionDetail] Received replies:', repliesData);
+        
+        setDiscussion(discussionData);
+        setReplies(repliesData.items || []);
+      } catch (error) {
+        console.error('[DiscussionDetail] Failed to fetch data:', error);
+        setError('加载讨论详情失败，请稍后重试');
+        setDiscussion(null);
+        setReplies([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [location.search]);
 
-  if (!question) {
+  if (loading) {
     return (
       <Layout title="问题详情" description="查看问题详情">
         <main className="container margin-vert--lg">
@@ -224,8 +119,31 @@ export default function DiscussionDetail(): ReactNode {
           />
           <div className="card">
             <div className="card__body">
-              <p>
-                <Translate>问题不存在或已被删除</Translate>
+              <p className="text--center">
+                <Translate>加载中...</Translate>
+              </p>
+            </div>
+          </div>
+        </main>
+      </Layout>
+    );
+  }
+
+  if (error || !discussion) {
+    return (
+      <Layout title="问题详情" description="查看问题详情">
+        <main className="container margin-vert--lg">
+          <Breadcrumbs
+            items={[
+              {label: '社区', to: '/community'},
+              {label: '讨论区', to: '/discussion-list'},
+              {label: '问题详情'},
+            ]}
+          />
+          <div className="card">
+            <div className="card__body">
+              <p className="text--danger">
+                {error || <Translate>问题不存在或已被删除</Translate>}
               </p>
               <Link className="button button--primary margin-top--md" to="/discussion-list">
                 <Translate>返回列表</Translate>
@@ -239,14 +157,14 @@ export default function DiscussionDetail(): ReactNode {
 
   return (
     <Layout
-      title={question.title}
+      title={discussion.title}
       description="查看问题详情">
       <main className="container margin-vert--lg">
         <Breadcrumbs
           items={[
             {label: '社区', to: '/community'},
             {label: '讨论区', to: '/discussion-list'},
-            {label: question ? question.title : '问题详情'},
+            {label: discussion.title},
           ]}
         />
         <div className={styles.detailHeader}>
@@ -261,38 +179,40 @@ export default function DiscussionDetail(): ReactNode {
               <span
                 className={clsx(
                   'badge',
-                  getCategoryBadgeClass(question.category),
+                  getCategoryBadgeClass(discussion.category),
                   styles.categoryBadge,
                 )}>
-                {question.categoryLabel}
+                {getCategoryLabel(discussion.category)}
               </span>
-              {question.status === 'solved' && (
+              {discussion.status === 'solved' && (
                 <span className={clsx('badge', 'badge--success', styles.statusBadge)}>
                   <Translate>已解决</Translate>
                 </span>
               )}
-              {question.status === 'open' && (
+              {discussion.status === 'open' && (
                 <span className={clsx('badge', 'badge--warning', styles.statusBadge)}>
                   <Translate>待解决</Translate>
                 </span>
               )}
             </div>
             <Heading as="h1" className={styles.detailTitle}>
-              {question.title}
+              {discussion.title}
             </Heading>
             <div className={styles.questionMeta}>
+              {discussion.author && (
+                <span>
+                  <Translate
+                    values={{
+                      author: discussion.author,
+                    }}>
+                    {'提问者：{author}'}
+                  </Translate>
+                </span>
+              )}
               <span>
                 <Translate
                   values={{
-                    author: question.author,
-                  }}>
-                  {'提问者：{author}'}
-                </Translate>
-              </span>
-              <span>
-                <Translate
-                  values={{
-                    date: question.createdAt,
+                    date: formatDate(discussion.created_at),
                   }}>
                   {'发布时间：{date}'}
                 </Translate>
@@ -300,7 +220,7 @@ export default function DiscussionDetail(): ReactNode {
               <span>
                 <Translate
                   values={{
-                    views: question.views,
+                    views: discussion.view_count,
                   }}>
                   {'浏览：{views}'}
                 </Translate>
@@ -308,7 +228,7 @@ export default function DiscussionDetail(): ReactNode {
               <span>
                 <Translate
                   values={{
-                    replies: question.replies,
+                    replies: discussion.reply_count,
                   }}>
                   {'回复：{replies}'}
                 </Translate>
@@ -317,7 +237,7 @@ export default function DiscussionDetail(): ReactNode {
           </div>
           <div className="card__body">
             <div className={styles.questionContent}>
-              <pre className={styles.contentText}>{question.content}</pre>
+              <pre className={styles.contentText}>{discussion.content}</pre>
             </div>
           </div>
         </div>
@@ -326,24 +246,34 @@ export default function DiscussionDetail(): ReactNode {
           <Heading as="h2" className="margin-bottom--md">
             <Translate
               values={{
-                count: question.repliesList.length,
+                count: replies.length,
               }}>
               {'回复 ({count})'}
             </Translate>
           </Heading>
-          {question.repliesList.map((reply) => (
-            <div key={reply.id} className="card margin-bottom--md">
-              <div className="card__header">
-                <div className={styles.replyHeader}>
-                  <strong>{reply.author}</strong>
-                  <span className="text--sm text--muted">{reply.createdAt}</span>
+          {replies.length > 0 ? (
+            replies.map((reply) => (
+              <div key={reply.id} className="card margin-bottom--md">
+                <div className="card__header">
+                  <div className={styles.replyHeader}>
+                    <strong>{reply.author || '匿名用户'}</strong>
+                    <span className="text--sm text--muted">{formatDate(reply.created_at)}</span>
+                  </div>
+                </div>
+                <div className="card__body">
+                  <p className={styles.replyContent}>{reply.content}</p>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="card">
               <div className="card__body">
-                <p className={styles.replyContent}>{reply.content}</p>
+                <p className="text--muted text--center">
+                  <Translate>暂无回复</Translate>
+                </p>
               </div>
             </div>
-          ))}
+          )}
         </div>
 
         <div className="card margin-top--lg">

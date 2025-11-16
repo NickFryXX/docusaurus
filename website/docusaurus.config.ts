@@ -767,6 +767,11 @@ export default async function createConfigAsync() {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
+          // 登录控件已暂时移除
+          // {
+          //   type: 'custom-login-navbar-item',
+          //   position: 'right',
+          // },
         ]
           // TODO fix type
           .filter(Boolean) as NonNullable<

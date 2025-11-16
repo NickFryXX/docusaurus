@@ -8,10 +8,15 @@
 import React, {type ReactNode} from 'react';
 import Layout from '@theme-original/Layout';
 import type {Props} from '@theme/Layout';
+import {AuthProvider} from '@site/src/contexts/AuthContext';
 
 // This component is only used to test for CSS insertion order
 import './styles.module.css';
 
 export default function LayoutWrapper(props: Props): ReactNode {
-  return <Layout {...props} />;
+  return (
+    <AuthProvider>
+      <Layout {...props} />
+    </AuthProvider>
+  );
 }

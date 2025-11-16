@@ -92,7 +92,7 @@ export default function Community(): ReactNode {
                 </div>
                 <div className="card__body">
                   <p><Translate>参与社区讨论，提问和回答问题</Translate></p>
-                  <Link className="button button--primary" to="/discussion-list">
+                  <Link className="button button--primary" to="/discussion-list/">
                     <Translate>进入讨论区</Translate>
                   </Link>
                 </div>

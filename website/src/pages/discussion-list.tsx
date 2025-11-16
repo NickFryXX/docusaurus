@@ -6,72 +6,16 @@
  */
 
 import type {ReactNode} from 'react';
+import {useState, useEffect} from 'react';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Breadcrumbs from '@site/src/components/Breadcrumbs';
+import {discussionsApi, type Discussion} from '@site/src/utils/api';
 import clsx from 'clsx';
 import styles from './discussion.module.css';
-
-// Mock 数据
-const mockQuestions = [
-  {
-    id: '1',
-    title: '如何快速开始使用九问平台？',
-    category: 'usage',
-    categoryLabel: '使用问题',
-    author: '张三',
-    createdAt: '2024-01-15',
-    views: 128,
-    replies: 5,
-    status: 'solved',
-  },
-  {
-    id: '2',
-    title: 'API 调用时出现 401 错误',
-    category: 'bug',
-    categoryLabel: 'Bug 反馈',
-    author: '李四',
-    createdAt: '2024-01-14',
-    views: 89,
-    replies: 3,
-    status: 'open',
-  },
-  {
-    id: '3',
-    title: '建议增加批量操作功能',
-    category: 'feature',
-    categoryLabel: '功能建议',
-    author: '王五',
-    createdAt: '2024-01-13',
-    views: 156,
-    replies: 8,
-    status: 'open',
-  },
-  {
-    id: '4',
-    title: '文档中的示例代码无法运行',
-    category: 'usage',
-    categoryLabel: '使用问题',
-    author: '赵六',
-    createdAt: '2024-01-12',
-    views: 67,
-    replies: 2,
-    status: 'solved',
-  },
-  {
-    id: '5',
-    title: '性能优化相关问题',
-    category: 'other',
-    categoryLabel: '其他',
-    author: '钱七',
-    createdAt: '2024-01-11',
-    views: 94,
-    replies: 4,
-    status: 'open',
-  },
-];
 
 const getCategoryBadgeClass = (category: string) => {
   const categoryMap: Record<string, string> = {
@@ -83,7 +27,77 @@ const getCategoryBadgeClass = (category: string) => {
   return categoryMap[category] || 'badge--secondary';
 };
 
+const getCategoryLabel = (category: string) => {
+  const categoryMap: Record<string, string> = {
+    usage: '使用问题',
+    bug: 'Bug 反馈',
+    feature: '功能建议',
+    other: '其他',
+  };
+  return categoryMap[category] || category;
+};
+
 export default function DiscussionList(): ReactNode {
+  const [discussions, setDiscussions] = useState<Discussion[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [category, setCategory] = useState<string>('all');
+  const [status, setStatus] = useState<string>('all');
+
+  useEffect(() => {
+    // 只在客户端执行 API 调用，避免 SSR 问题
+    // 使用 typeof window 检查更可靠
+    if (typeof window === 'undefined') {
+      console.log('[DiscussionList] SSR environment, skipping API call');
+      return;
+    }
+
+    console.log('[DiscussionList] Client environment, starting API call');
+    
+    const fetchDiscussions = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const params: {
+          limit?: number;
+          category?: string;
+          status?: string;
+        } = {
+          limit: 50,
+        };
+        
+        if (category !== 'all') {
+          params.category = category;
+        }
+        if (status !== 'all') {
+          params.status = status;
+        }
+        
+        console.log('[DiscussionList] Fetching discussions with params:', params);
+        const response = await discussionsApi.getList(params);
+        console.log('[DiscussionList] Received response:', response);
+        setDiscussions(response.items || []);
+      } catch (error) {
+        console.error('[DiscussionList] Failed to fetch discussions:', error);
+        setError('加载讨论列表失败，请稍后重试');
+        setDiscussions([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDiscussions();
+  }, [category, status]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   return (
     <Layout
       title="讨论区"
@@ -110,7 +124,10 @@ export default function DiscussionList(): ReactNode {
                     <Translate>筛选：</Translate>
                   </strong>
                 </label>
-                <select className={styles.filterSelect}>
+                <select
+                  className={styles.filterSelect}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}>
                   <option value="all">
                     <Translate>全部</Translate>
                   </option>
@@ -134,7 +151,10 @@ export default function DiscussionList(): ReactNode {
                     <Translate>状态：</Translate>
                   </strong>
                 </label>
-                <select className={styles.filterSelect}>
+                <select
+                  className={styles.filterSelect}
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}>
                   <option value="all">
                     <Translate>全部</Translate>
                   </option>
@@ -148,70 +168,102 @@ export default function DiscussionList(): ReactNode {
               </div>
             </div>
 
-            <div className={styles.questionsList}>
-              {mockQuestions.map((question) => (
+            {loading ? (
+              <div className="text--center padding-vert--xl">
+                <p className="text--muted">
+                  <Translate>加载中...</Translate>
+                </p>
+              </div>
+            ) : error ? (
+              <div className="text--center padding-vert--xl">
+                <p className="text--danger">
+                  {error}
+                </p>
                 <Link
-                  key={question.id}
-                  to={`/discussion-detail?id=${question.id}`}
-                  className={styles.questionItem}>
-                  <div className={styles.questionHeader}>
-                    <span
-                      className={clsx(
-                        'badge',
-                        getCategoryBadgeClass(question.category),
-                        styles.categoryBadge,
-                      )}>
-                      {question.categoryLabel}
-                    </span>
-                    {question.status === 'solved' && (
-                      <span className={clsx('badge', 'badge--success', styles.statusBadge)}>
-                        <Translate>已解决</Translate>
-                      </span>
-                    )}
-                    {question.status === 'open' && (
-                      <span className={clsx('badge', 'badge--warning', styles.statusBadge)}>
-                        <Translate>待解决</Translate>
-                      </span>
-                    )}
-                  </div>
-                  <h3 className={styles.questionTitle}>{question.title}</h3>
-                  <div className={styles.questionMeta}>
-                    <span>
-                      <Translate
-                        values={{
-                          author: question.author,
-                        }}>
-                        {'提问者：{author}'}
-                      </Translate>
-                    </span>
-                    <span>
-                      <Translate
-                        values={{
-                          date: question.createdAt,
-                        }}>
-                        {'发布时间：{date}'}
-                      </Translate>
-                    </span>
-                    <span>
-                      <Translate
-                        values={{
-                          views: question.views,
-                        }}>
-                        {'浏览：{views}'}
-                      </Translate>
-                    </span>
-                    <span>
-                      <Translate
-                        values={{
-                          replies: question.replies,
-                        }}>
-                        {'回复：{replies}'}
-                      </Translate>
-                    </span>
-                  </div>
+                  className="button button--primary margin-top--md"
+                  to="/community">
+                  <Translate>返回社区</Translate>
                 </Link>
-              ))}
-            </div>
+              </div>
+            ) : discussions.length > 0 ? (
+              <div className={styles.questionsList}>
+                {discussions.map((question) => (
+                  <Link
+                    key={question.id}
+                    to={`/discussion-detail?id=${question.id}`}
+                    className={styles.questionItem}>
+                    <div className={styles.questionHeader}>
+                      <span
+                        className={clsx(
+                          'badge',
+                          getCategoryBadgeClass(question.category),
+                          styles.categoryBadge,
+                        )}>
+                        {getCategoryLabel(question.category)}
+                      </span>
+                      {question.status === 'solved' && (
+                        <span className={clsx('badge', 'badge--success', styles.statusBadge)}>
+                          <Translate>已解决</Translate>
+                        </span>
+                      )}
+                      {question.status === 'open' && (
+                        <span className={clsx('badge', 'badge--warning', styles.statusBadge)}>
+                          <Translate>待解决</Translate>
+                        </span>
+                      )}
+                    </div>
+                    <h3 className={styles.questionTitle}>{question.title}</h3>
+                    <div className={styles.questionMeta}>
+                      {question.author && (
+                        <span>
+                          <Translate
+                            values={{
+                              author: question.author,
+                            }}>
+                            {'提问者：{author}'}
+                          </Translate>
+                        </span>
+                      )}
+                      <span>
+                        <Translate
+                          values={{
+                            date: formatDate(question.created_at),
+                          }}>
+                          {'发布时间：{date}'}
+                          </Translate>
+                      </span>
+                      <span>
+                        <Translate
+                          values={{
+                            views: question.view_count,
+                          }}>
+                          {'浏览：{views}'}
+                        </Translate>
+                      </span>
+                      <span>
+                        <Translate
+                          values={{
+                            replies: question.reply_count,
+                          }}>
+                          {'回复：{replies}'}
+                        </Translate>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text--center padding-vert--xl">
+                <p className="text--muted">
+                  <Translate>暂无讨论，快来发布第一个问题吧！</Translate>
+                </p>
+                <Link
+                  className="button button--primary margin-top--md"
+                  to="/discussion">
+                  <Translate>创建问题</Translate>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </main>

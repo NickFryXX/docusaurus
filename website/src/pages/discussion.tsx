@@ -13,6 +13,7 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import Breadcrumbs from '@site/src/components/Breadcrumbs';
+import {discussionsApi} from '@site/src/utils/api';
 import clsx from 'clsx';
 import styles from './discussion.module.css';
 
@@ -22,13 +23,32 @@ export default function Discussion(): ReactNode {
     title: '',
     category: '',
     content: '',
+    author: '',
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 这里可以添加提交逻辑
-    // 提交成功后跳转到列表页
-    history.push('/discussion-list');
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      await discussionsApi.create({
+        title: formData.title,
+        content: formData.content,
+        category: formData.category,
+        author: formData.author || undefined,
+        status: 'open',
+      });
+      
+      // 提交成功后跳转到列表页
+      history.push('/discussion-list');
+    } catch (err) {
+      console.error('Failed to create discussion:', err);
+      setError('发布失败，请稍后重试');
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -72,6 +92,29 @@ export default function Discussion(): ReactNode {
               </div>
               <div className="card__body">
                 <form onSubmit={handleSubmit}>
+                  {error && (
+                    <div className="alert alert--danger margin-bottom--md">
+                      {error}
+                    </div>
+                  )}
+
+                  <div className="margin-bottom--md">
+                    <label htmlFor="author" className="margin-bottom--sm">
+                      <strong>
+                        <Translate>您的姓名</Translate>
+                      </strong>
+                    </label>
+                    <input
+                      type="text"
+                      id="author"
+                      name="author"
+                      className={clsx('input', styles.input)}
+                      placeholder="请输入您的姓名（可选）"
+                      value={formData.author}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   <div className="margin-bottom--md">
                     <label htmlFor="title" className="margin-bottom--sm">
                       <strong>
@@ -87,6 +130,7 @@ export default function Discussion(): ReactNode {
                       value={formData.title}
                       onChange={handleChange}
                       required
+                      disabled={submitting}
                     />
                   </div>
 
@@ -102,7 +146,8 @@ export default function Discussion(): ReactNode {
                       className={clsx('input', styles.select)}
                       value={formData.category}
                       onChange={handleChange}
-                      required>
+                      required
+                      disabled={submitting}>
                       <option value="">
                         <Translate>请选择分类</Translate>
                       </option>
@@ -136,21 +181,29 @@ export default function Discussion(): ReactNode {
                       value={formData.content}
                       onChange={handleChange}
                       required
+                      disabled={submitting}
                     />
                   </div>
 
                   <div className={styles.formActions}>
                     <button
                       type="submit"
-                      className="button button--primary button--lg">
-                      <Translate>发布问题</Translate>
+                      className="button button--primary button--lg"
+                      disabled={submitting}>
+                      {submitting ? (
+                        <Translate>发布中...</Translate>
+                      ) : (
+                        <Translate>发布问题</Translate>
+                      )}
                     </button>
                     <button
                       type="button"
                       className="button button--secondary button--lg margin-left--sm"
                       onClick={() => {
-                        setFormData({title: '', category: '', content: ''});
-                      }}>
+                        setFormData({title: '', category: '', content: '', author: ''});
+                        setError(null);
+                      }}
+                      disabled={submitting}>
                       <Translate>重置</Translate>
                     </button>
                   </div>

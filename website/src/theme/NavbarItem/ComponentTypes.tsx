@@ -7,8 +7,10 @@
 
 import ComponentTypes from '@theme-original/NavbarItem/ComponentTypes';
 import CustomDogfoodNavbarItem from '@site/src/components/NavbarItems/CustomDogfoodNavbarItem';
+import LoginNavbarItem from '@site/src/components/NavbarItems/LoginNavbarItem';
 
 export default {
   ...ComponentTypes,
   'custom-dogfood-navbar-item': CustomDogfoodNavbarItem,
+  'custom-login-navbar-item': LoginNavbarItem,
 };
