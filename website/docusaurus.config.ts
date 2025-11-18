@@ -164,7 +164,7 @@ const showLastUpdate = process.env.DOCUSAURUS_CURRENT_LOCALE === defaultLocale;
 
 export default async function createConfigAsync() {
   return {
-    title: 'Jiuwen',
+    title: '九问大模型应用开发平台',
     tagline: getLocalizedConfigValue('tagline'),
     organizationName: 'facebook',
     projectName: 'jiuwen',
@@ -619,7 +619,7 @@ export default async function createConfigAsync() {
       },
       colorMode: {
         defaultMode: 'light',
-        disableSwitch: false,
+        disableSwitch: true,
         respectPrefersColorScheme: true,
       },
       // announcementBar: {
@@ -655,38 +655,11 @@ export default async function createConfigAsync() {
       },
       image: 'img/docusaurus-social-card.jpg',
       // metadata: [{name: 'twitter:card', content: 'summary'}],
-      algolia: {
-        appId: 'X1Z85QJPUV',
-        apiKey: 'bf7211c161e8205da2f933a02534105a',
-        indexName: 'docusaurus-2',
-
-        // TODO Docusaurus v4: remove after we drop DocSearch v3
-        //  temporary, for DocSearch v3/v4 conditional Ask AI integration
-        //  see https://github.com/facebook/docusaurus/pull/11327
-        // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
-        ...(require('@docsearch/react').version.startsWith('4.')
-          ? {
-              askAi: {
-                // cSpell:ignore IMYF
-                assistantId: 'RgIMYFUmTfrN',
-                indexName: 'docusaurus-markdown',
-              },
-            }
-          : {}),
-
-        replaceSearchResultPathname:
-          isDev || isDeployPreview
-            ? {
-                from: /^\/docs\/next/g.source,
-                to: '/docs',
-              }
-            : undefined,
-      },
       navbar: {
         hideOnScroll: true,
-        title: 'Jiuwen',
+        title: 'openJiuwen',
         logo: {
-          alt: 'Jiuwen Logo',
+          alt: 'openJiuwen Logo',
           src: 'img/jiuwen-logo-small.svg',
           srcDark: 'img/jiuwen-logo-small.svg',
           width: 32,
@@ -696,8 +669,19 @@ export default async function createConfigAsync() {
           {to: '/docs-page', label: '文档', position: 'left'},
           {to: '/blog-page', label: '博客', position: 'left'},
           {to: '/news', label: '新闻', position: 'left'},
-          {to: '/community', label: '社区', position: 'left'},
-          {to: '/contribute', label: '贡献', position: 'left'},
+          {to: '/versions-page', label: '下载', position: 'left'},
+          {
+            type: 'dropdown',
+            label: '社区',
+            position: 'left',
+            to: '/community',
+            items: [
+              {label: 'SIG中心', to: '#'},
+              {label: '贡献攻略', to: '/contribute'},
+              {label: 'CLA/DCO签署', to: '#'},
+              {label: '开发者论坛', to: '#'},
+            ],
+          },
           // This item links to a draft doc: only displayed in dev
           {
             type: 'doc',
@@ -748,24 +732,10 @@ export default async function createConfigAsync() {
             ],
           }, */
           {
-            type: 'localeDropdown',
-            position: 'right',
-            dropdownItemsAfter: [
-              {
-                type: 'html',
-                value: '<hr style="margin: 0.3rem 0;">',
-              },
-              {
-                href: 'https://github.com/facebook/docusaurus/issues/3526',
-                label: 'Help Us Translate',
-              },
-            ],
-          },
-          {
-            href: 'https://github.com/jiuwen',
+            href: 'https://gitee.com/testmyai/test-agentcore',
             position: 'right',
             className: 'header-github-link',
-            'aria-label': 'GitHub repository',
+            'aria-label': 'Gitee repository',
           },
           // 登录控件已暂时移除
           // {
@@ -856,11 +826,11 @@ export default async function createConfigAsync() {
           },
         ],
         logo: {
-          alt: 'Jiuwen Logo',
+          alt: 'openJiuwen Logo',
           src: '/img/jiuwen-logo-small.svg',
           href: '/',
         },
-        copyright: `Copyright © ${new Date().getFullYear()} Jiuwen Platform. 京ICP备XXXXXXXX号-1 | Built with Jiuwen.`,
+        copyright: `Copyright © ${new Date().getFullYear()} openJiuwen Platform. 京ICP备XXXXXXXX号-1 | Built with openJiuwen.`,
       },
     } satisfies Preset.ThemeConfig,
   } satisfies Config;
