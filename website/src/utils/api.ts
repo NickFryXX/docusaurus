@@ -4,10 +4,11 @@
  */
 
 // API 基础地址
-// 在生产环境中使用相对路径（通过 Nginx 反向代理转发到后端）
-// 在浏览器中，空字符串会使用当前域名，通过 Nginx 代理到后端
+// 使用相对路径（通过 Nginx 反向代理转发到后端）
+// 在浏览器中，相对路径会使用当前域名，通过 Nginx 代理到后端
 // 注意：不能使用 process.env，因为 process 在浏览器中不存在
 // 如果需要配置不同的 API 地址，可以通过 Docusaurus 的 webpack 配置注入
+// http://服务器IP:8000
 const API_BASE_URL = '';
 
 // 通用响应类型
@@ -559,4 +560,42 @@ export const docsVersionsApi = {
   },
 };
 
+// Blog版本相关类型
+export interface Blog {
+  id: number;
+  title: string;
+  content: string;
+  excerpt?: string;
+  author?: string;
+  tags?: string; // 逗号分隔
+  cover_image?: string;
+  slug?: string;
+  status: string; // draft/published
+  view_count: number;
+  created_at: string;
+  updated_at: string;
+}
 
+export interface BlogListResponse {
+  total: number;
+  items: Blog[];
+}
+
+/**
+ * Blog API
+ */
+export const blogApi = {
+  /**
+   * 获取博客文章列表
+   */
+  getBlogList: async (): Promise<BlogListResponse> => {
+    return apiRequest<BlogListResponse>('/api/blogs');
+  },
+
+  /**
+   * 获取指定博客文章详情
+   */
+  getBlogDetail: async (id: number): Promise<Blog> => {
+    return apiRequest<Blog>(`/api/blogs/${id}`);
+  },
+};
