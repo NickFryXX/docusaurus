@@ -5,6 +5,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .leftRow {
@@ -14,21 +15,36 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 300px;
+  max-height: 500px;
+  height: 100%;
   width: 300px;
   margin-right: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
 }
 
 .authorPic {
-  width: 128px;
-  height: 128px;
-  max-width: 128px;
-  max-height: 128px;
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
   object-fit: cover;
-  align-self: center;
+  align-items: center;
   margin-bottom: 2rem;
+}
+
+.authorPicImg {
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .authorMedia {
@@ -44,6 +60,8 @@
   max-width: 24px;
   max-height: 24px;
   margin-right: 0.5rem;
+  object-fit: cover;
+  align-self: center;
   border-radius: 100%;
 }
 
@@ -61,11 +79,14 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .relatedArticlesList {
+  max-width: 290px;
   list-style-type: none;
   padding: 0;
+  text-align: center;
 }
 
 .relatedArticlesList li {
@@ -123,25 +144,61 @@
 }
 
 .backToTop {
-  margin-top: 2rem;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--jiuwen-bg-secondary);
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.backToTop.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .backToTop:hover {
-  filter: brightness(1.2);
+  background-color: var(--jiuwen-primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .backToTopText {
-  font-size: 1.25rem;
-  font-weight: 600;
+  display: none; /* 隐藏文字，只显示图标 */
 }
 
 .backToTopIcon {
   width: 24px;
   height: 24px;
-  max-width: 24px;
-  max-height: 24px;
-  border-radius: 100%;
+  color: var(--jiuwen-text-primary);
+}
+
+.backToTop:hover .backToTopIcon {
+  color: white;
+}
+
+@media screen and (max-width: 870px) {
+  .articalContainer {
+    flex-direction: column;
+  }
+
+  .leftRow {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: auto;
+    position: static;
+    top: 0;
+  }
 }
